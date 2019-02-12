@@ -1,10 +1,16 @@
 ﻿using BusinessLayer.Abstract;
-using DataLayer.Interaction;
+using DataLayer.Abstract;
 
 namespace BusinessLayer.Interaction
 {
     public class BLEntry : IBLEntry
     {
-        public IBusinessInteraction BusinessInteraction => new BusinessInteraction(new DLEntry());
+        private IDLEntry _bLEntry;
+        public BLEntry(IDLEntry bLEntry)
+        {
+            _bLEntry = bLEntry;
+        }
+
+        public IBusinessInteraction BusinessInteraction => new BusinessInteraction(_bLEntry);
     }
 }
